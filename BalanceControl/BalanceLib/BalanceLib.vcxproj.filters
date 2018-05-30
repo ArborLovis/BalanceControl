@@ -18,6 +18,12 @@
     <Text Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Googly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Googly.cpp">
     <ClCompile Include="..\BalanceControlPi\Dummy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
