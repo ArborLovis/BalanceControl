@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../../../../../Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.13.26128/include/ctime"
+#include <chrono>
 
 class Stabilizer
 {
@@ -21,7 +21,7 @@ private:
 	float ki_;
 	float kd_;
 
-	auto delta_t;
+	int64_t sys_time_old_;
 
 	float error_sum_;
 	float max_angle_;
