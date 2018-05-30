@@ -35,6 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stabilizer.h" />
+    <ClCompile Include="..\BalanceControlPi\Physics.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\BalanceControlPi\Physics.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
