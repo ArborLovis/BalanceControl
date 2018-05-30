@@ -18,7 +18,12 @@
     <Text Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\BalanceControl\Dummy.cpp">
+    <ClInclude Include="Googly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Googly.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
