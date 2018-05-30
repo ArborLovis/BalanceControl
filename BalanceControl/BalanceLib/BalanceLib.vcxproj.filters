@@ -18,6 +18,20 @@
     <Text Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Googly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Googly.cpp">
+    <ClCompile Include="..\BalanceControlPi\Dummy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rocker.cpp">
+    <ClCompile Include="..\BalanceControlPi\Dummy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stabilizer.cpp">
     <ClCompile Include="..\BalanceControlPi\Dummy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -27,6 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\BalanceControlPi\Physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stabilizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Rocker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

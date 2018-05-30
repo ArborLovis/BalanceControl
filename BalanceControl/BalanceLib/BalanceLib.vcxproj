@@ -22,7 +22,19 @@
     <Text Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Googly.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Googly.cpp" />
     <ClCompile Include="..\BalanceControlPi\Dummy.cpp" />
+    <ClCompile Include="Rocker.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Rocker.h" />
+    <ClCompile Include="Stabilizer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stabilizer.h" />
     <ClCompile Include="..\BalanceControlPi\Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
