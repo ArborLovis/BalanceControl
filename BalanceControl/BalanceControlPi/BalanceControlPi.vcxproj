@@ -51,12 +51,12 @@
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\BalanceLib\Physics.cpp" />
     <ClCompile Include="Dummy.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Physics.h" />
+    <ClInclude Include="..\BalanceLib\Physics.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
