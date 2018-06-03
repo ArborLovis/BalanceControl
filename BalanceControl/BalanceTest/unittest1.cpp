@@ -65,7 +65,6 @@ namespace BalanceTest
 			const auto calc_return_value = error * kp_test + error * ki_test * cycle_time_test + (error - 0) * kd_test / cycle_time_test;
 
 			Assert::AreEqual(calc_return_value, test_pid.calc_setpoint(position_test), 0, nullptr, nullptr);
-
 		}
 	};
 }
