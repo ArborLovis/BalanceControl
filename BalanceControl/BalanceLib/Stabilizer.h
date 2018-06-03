@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 
 class Stabilizer
 {
@@ -20,7 +21,7 @@ private:
 	float ki_;
 	float kd_;
 
-	float delta_t;
+	auto delta_t;
 
 	float error_sum_;
 	float max_angle_;
