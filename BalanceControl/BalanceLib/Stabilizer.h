@@ -21,7 +21,7 @@ private:
 	float ki_;
 	float kd_;
 
-	auto delta_t;
+	int64_t sys_time_old_;
 
 	float error_sum_;
 	float max_angle_;
