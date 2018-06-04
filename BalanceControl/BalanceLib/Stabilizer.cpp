@@ -2,7 +2,7 @@
 #include <chrono>
 
 
-Stabilizer::Stabilizer(float kp, float ki, float kd, float min_angle, float max_angle)
+Stabilizer::Stabilizer(float kp, float ki, float kd, float min_angle, float max_angle) : error_sum_{0}
 {
 	kp_ = kp;
 	ki_ = ki;
@@ -11,7 +11,7 @@ Stabilizer::Stabilizer(float kp, float ki, float kd, float min_angle, float max_
 	max_angle_ = max_angle;
 
 	const auto sys_time_now = std::chrono::system_clock::now().time_since_epoch();
-	sys_time_old_ = std::chrono::duration_cast<std::chrono::microseconds>(sys_time_now).count();
+	const auto sys_time_old_ = std::chrono::duration_cast<std::chrono::microseconds>(sys_time_now).count();
 
 }
 
