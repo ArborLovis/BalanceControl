@@ -11,13 +11,39 @@ namespace BalanceTest
 	{
 	public:
 		
-		TEST_METHOD(TestConstructor)
+		TEST_METHOD(velocity_by_uncahnged_angle)
 		{
-			sys_now_duration const clk_rep_cnt = std::chrono::system_clock::now().time_since_epoch();
-						
-			Physics make_stuff(static_cast<float>(0.003), clk_rep_cnt);
+			sys_now_duration const clk_rep_cnt = std::chrono::system_clock::now().time_since_epoch();	
+			Physics phy_calculator(0.0f, clk_rep_cnt);
+		
+			const long long time_now_us = std::chrono::duration_cast<std::chrono::microseconds>(clk_rep_cnt).count();
+			Assert::AreEqual(0.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 0, time_now_us)));
+		}
 
-			Assert::IsTrue(make_stuff.dummy_physics());
+		TEST_METHOD(velocity_by_cahnged_angle)
+		{
+			bool exception_appear = false;
+			try
+			{
+				sys_now_duration const clk_rep_cnt = std::chrono::system_clock::now().time_since_epoch();
+				Physics phy_calculator(0.0f, clk_rep_cnt);
+
+				auto time_now_us = std::chrono::duration_cast<std::chrono::microseconds>(clk_rep_cnt).count();
+				//Assert::AreEqual(0.0, static_cast<double>(time_now_us));
+				time_now_us += 100000;	//simulate time delta of 100ms
+
+				//Assert::AreEqual(0.170349, static_cast<double>(phy_calculator.calc_velocity(10.0f, 0, time_now_us)));
+				Assert::IsTrue(0.17 < phy_calculator.calc_velocity(10.0f, 0, time_now_us));
+				const auto vel = phy_calculator.calc_velocity(10.0f, 0, time_now_us);
+				time_now_us += 200000;
+				Assert::IsTrue(0.34 < phy_calculator.calc_velocity(10.0f, vel, time_now_us));
+				
+			}
+			catch(const std::exception &e)
+			{
+				exception_appear = true;
+			}
+			Assert::IsFalse(exception_appear);
 		}
 
 	};

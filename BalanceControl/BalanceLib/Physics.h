@@ -9,6 +9,9 @@ class Physics
 public:
 	Physics(float act_vel, sys_now_duration sys_act_dur);
 
+	float calc_velocity(float angle, float act_veloc, long long act_time_us);
+	float calc_position(float act_pos, float act_veloc);
+
 	bool dummy_physics() const;
 
 private:
@@ -18,6 +21,7 @@ private:
 	float act_angle_;
 	sys_now_duration sys_now_dur_;
 	sys_rep_us act_time_;
+	sys_rep_us time_delta_;
 	
 };
 
