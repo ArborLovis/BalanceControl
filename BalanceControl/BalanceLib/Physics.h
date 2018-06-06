@@ -1,5 +1,6 @@
 #pragma once
 #include <chrono>
+#include <chrono>
 
 using sys_now_duration = std::chrono::duration<long long, std::ratio<1, 1000000000>>;//std::chrono::time_point<std::chrono::_V2::system_clock, std::chrono::nanoseconds>::duration;
 using sys_rep_us = std::chrono::microseconds::rep;
@@ -7,12 +8,10 @@ using sys_rep_us = std::chrono::microseconds::rep;
 class Physics
 {
 public:
-	Physics(float act_vel, sys_now_duration sys_act_dur);
+	Physics();
 
-	float calc_velocity(float angle, float act_veloc, long long act_time_us);
-	float calc_position(float act_pos, float act_veloc);
-
-	bool dummy_physics() const;
+	float calc_velocity(float angle, float act_veloc, const long long time_delta_us);
+	float calc_position(float act_pos, float act_veloc, const long long time_delta_us);
 
 private:
 	const float g_;
