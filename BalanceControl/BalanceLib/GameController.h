@@ -6,10 +6,6 @@
 #include "Stabilizer.h"
 #include <chrono>
 
-const float PI = 3.141592;
-using sys_now_duration = std::chrono::duration<long long, std::ratio<1, 1000000000>>;
-sys_now_duration test = std::chrono::system_clock::duration::zero();
-
 class GameController
 {
 public:
@@ -17,12 +13,10 @@ public:
 
 	void update_values();
 
-
-
 private:
 	Googly ball_;
 	Physics physics_;
 	Rocker seesaw_;
-	Stabilizer controller;
+	Stabilizer controller_;
 }; 
 
