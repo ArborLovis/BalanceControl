@@ -32,6 +32,7 @@
   <ItemGroup>
     <ClInclude Include="GameController.h" />
     <ClInclude Include="Googly.h" />
+    <ClInclude Include="Math_const.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Rocker.h" />
     <ClInclude Include="Stabilizer.h" />

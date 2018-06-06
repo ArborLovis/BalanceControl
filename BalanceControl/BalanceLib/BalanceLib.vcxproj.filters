@@ -53,5 +53,8 @@
     <ClInclude Include="GameController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Math_const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
