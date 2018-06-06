@@ -11,7 +11,7 @@ class GameController
 public:
 	GameController();
 
-	float update_values(float);
+	float update_values(float input_angle);
 
 	Googly ball_;
 	Physics physics_;
@@ -20,4 +20,3 @@ public:
 
 
 }; 
-
