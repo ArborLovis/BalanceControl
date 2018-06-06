@@ -28,6 +28,4 @@ float Googly::get_position() const
 	return position_;
 }
 
-Googly::~Googly()
-{
-}
+

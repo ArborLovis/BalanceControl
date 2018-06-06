@@ -1,10 +1,11 @@
 #pragma once
 #include <chrono>
+const float PI = 3.141592;
 
 class Stabilizer
 {
 public:
-	Stabilizer(float kp, float ki, float kd, float min_angle, float max_angle, float cycletime);
+	Stabilizer(float kp = 1, float ki = 0.05 , float kd = 0.5, float min_angle = -PI/8, float max_angle = PI/8, float cycletime = 0.01);
 	float calc_setpoint(float position);
 
 	void set_kp(float value);

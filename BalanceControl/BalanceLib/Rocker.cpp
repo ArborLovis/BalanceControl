@@ -19,6 +19,3 @@ void Rocker::set_angle(float act_angle)
 	act_angle_ = act_angle;
 }
 
-Rocker::~Rocker()
-{
-}

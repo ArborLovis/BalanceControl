@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "../BalanceLib/Physics.h"
 #include "../BalanceLib/Stabilizer.h"
+#include "../BalanceLib/Googly.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -63,6 +64,45 @@ namespace BalanceTest
 
 		TEST_METHOD(test_pid_constructor)
 		{
+			Assert::AreEqual(0, test_pid.get_kp(), 0, nullptr, nullptr);
+			Assert::AreEqual(0, test_pid.get_ki(), 0, nullptr, nullptr);
+			Assert::AreEqual(0, test_pid.get_kd(), 0, nullptr, nullptr);
+		}
+
+		TEST_METHOD(set_pid_values)
+		{
+			test_pid.set_kp(kp_test);
+			Assert::AreEqual(kp_test, test_pid.get_kp(), 0, nullptr, nullptr);
+
+			test_pid.set_ki(ki_test);
+			Assert::AreEqual(ki_test, test_pid.get_ki(), 0, nullptr, nullptr);
+
+			test_pid.set_kd(kd_test);
+			Assert::AreEqual(kd_test, test_pid.get_kd(), 0, nullptr, nullptr);
+		}
+
+		TEST_METHOD(calc_setpoint_test)
+		{
+			test_pid.set_kp(kp_test);
+			test_pid.set_ki(ki_test);
+			test_pid.set_kd(kd_test);
+
+			const auto position_test = 1;
+			const auto error = 0 - position_test;
+			const auto calc_return_value = error * kp_test + error * ki_test * cycle_time_test + (error - 0) * kd_test / cycle_time_test;
+
+			Assert::AreEqual(calc_return_value, test_pid.calc_setpoint(position_test), 0, nullptr, nullptr);
+		}
+	};
+
+	TEST_CLASS(test_class_googly)
+	{
+
+
+
+		TEST_METHOD(test_pid_constructor)
+		{
+
 			Assert::AreEqual(0, test_pid.get_kp(), 0, nullptr, nullptr);
 			Assert::AreEqual(0, test_pid.get_ki(), 0, nullptr, nullptr);
 			Assert::AreEqual(0, test_pid.get_kd(), 0, nullptr, nullptr);
