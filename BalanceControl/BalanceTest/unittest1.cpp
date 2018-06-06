@@ -2,6 +2,8 @@
 #include "CppUnitTest.h"
 #include "../BalanceLib/Physics.h"
 #include "../BalanceLib/Stabilizer.h"
+#include "../BalanceLib/Googly.h"
+
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -12,12 +14,11 @@ namespace BalanceTest
 	public:
 		
 		TEST_METHOD(velocity_by_uncahnged_angle)
-		{
-			sys_now_duration const clk_rep_cnt = std::chrono::system_clock::now().time_since_epoch();	
-			Physics phy_calculator(0.0f, clk_rep_cnt);
+		{	
+			Physics phy_calculator(0.0f);
 		
-			const long long time_now_us = std::chrono::duration_cast<std::chrono::microseconds>(clk_rep_cnt).count();
-			Assert::AreEqual(0.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 0, time_now_us)));
+			//const long long time_now_us = std::chrono::duration_cast<std::chrono::microseconds>(clk_rep_cnt).count();
+			Assert::AreEqual(0.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 0)));
 		}
 
 		TEST_METHOD(velocity_by_cahnged_angle)
@@ -26,17 +27,20 @@ namespace BalanceTest
 			try
 			{
 				sys_now_duration const clk_rep_cnt = std::chrono::system_clock::now().time_since_epoch();
-				Physics phy_calculator(0.0f, clk_rep_cnt);
+				Physics phy_calculator(0.0f);
 
 				auto time_now_us = std::chrono::duration_cast<std::chrono::microseconds>(clk_rep_cnt).count();
 				//Assert::AreEqual(0.0, static_cast<double>(time_now_us));
 				time_now_us += 100000;	//simulate time delta of 100ms
-
+				for (auto i = 0; i < 65535; ++i);
+				for (auto i = 0; i < 65535; ++i);
 				//Assert::AreEqual(0.170349, static_cast<double>(phy_calculator.calc_velocity(10.0f, 0, time_now_us)));
-				Assert::IsTrue(0.17 < phy_calculator.calc_velocity(10.0f, 0, time_now_us));
-				const auto vel = phy_calculator.calc_velocity(10.0f, 0, time_now_us);
+				Assert::IsTrue(0.17 < phy_calculator.calc_velocity(10.0f, 0));
+
+				const auto vel = phy_calculator.calc_velocity(10.0f, 0);
 				time_now_us += 200000;
-				Assert::IsTrue(0.34 < phy_calculator.calc_velocity(10.0f, vel, time_now_us));
+				for (auto i = 0; i < 65535; ++i);
+				Assert::IsTrue(0.34 < phy_calculator.calc_velocity(10.0f, vel));
 				
 			}
 			catch(const std::exception &e)
@@ -92,5 +96,10 @@ namespace BalanceTest
 
 			Assert::AreEqual(calc_return_value, test_pid.calc_setpoint(position_test), 0, nullptr, nullptr);
 		}
+	};
+
+	TEST_CLASS(test_class_googly)
+	{
+
 	};
 }

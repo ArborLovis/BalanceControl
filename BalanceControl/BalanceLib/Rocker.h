@@ -1,4 +1,6 @@
 #pragma once
+const float PI = 3.141592;
+
 
 #include <chrono>
 
@@ -8,12 +10,13 @@ class Rocker
 
 public:
 
-	Rocker(float lenght, float act_angle);
+	Rocker(float lenght = 2, float act_angle = 0, float min_angle = -PI/8, float max_angle = PI/8);
 
 	float get_angle(const float delta_time_mico);
 	void set_angle(float act_angle);
 	
 private:
+
 
 	const float PI = 3.141592;
 
