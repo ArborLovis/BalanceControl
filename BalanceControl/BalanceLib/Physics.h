@@ -17,10 +17,8 @@ private:
 	const float g_;
 	float act_vel_;
 	float act_acc_;
-	float act_angle_;
-	sys_now_duration sys_now_dur_;
-	sys_rep_us act_time_;
-	sys_rep_us time_delta_;
+	const float low_limit_angle_;
+	const float high_limit_angle_;
 	
 };
 
