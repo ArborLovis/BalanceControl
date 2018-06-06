@@ -9,7 +9,7 @@ GameController::GameController()
 
 float GameController::update_values(float input_angle)
 {
-	const long long time_delta_us = 100;
+	const long long time_delta_us = 2000;
 
 	float act_vel;
 	float act_pos;

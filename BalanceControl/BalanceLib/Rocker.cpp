@@ -4,17 +4,23 @@ Rocker::Rocker(float length, float act_angle)
 {
 	length_ = length;
 	act_angle_ = act_angle;
+	target_angle_ = 0;
+
 }
 
 float Rocker::get_angle(const float delta_time_micro) //const = no changes from membervariables
 {
-	angle_change(delta_time_micro);
+	auto const hysteresis = 0.001745329;	// 0.1° toleranz
+	if(!((act_angle_ >= target_angle_-hysteresis) && (act_angle_ <= target_angle_ + hysteresis)))
+		angle_change(delta_time_micro);
 
 	return act_angle_;
 }
 
 void Rocker::set_angle(float target_angle)
 {
+
+
 	if (target_angle > max_angle_)
 		target_angle_ = max_angle_;
 	else if (target_angle < min_angle_)
