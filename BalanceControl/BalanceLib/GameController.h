@@ -11,12 +11,13 @@ class GameController
 public:
 	GameController();
 
-	void update_values();
+	float update_values(float);
 
-private:
 	Googly ball_;
 	Physics physics_;
 	Rocker seesaw_;
 	Stabilizer controller_;
+
+
 }; 
 
