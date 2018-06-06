@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 #include "../BalanceLib/Physics.h"
 #include "../BalanceLib/Stabilizer.h"
+#include "../BalanceLib/Googly.h"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -104,5 +105,10 @@ namespace BalanceTest
 
 			Assert::AreEqual(calc_return_value, test_pid.calc_setpoint(position_test), 0, nullptr, nullptr);
 		}
+	};
+
+	TEST_CLASS(test_class_googly)
+	{
+
 	};
 }

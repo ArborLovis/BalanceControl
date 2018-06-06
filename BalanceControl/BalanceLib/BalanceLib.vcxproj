@@ -23,12 +23,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\BalanceControlPi\Dummy.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="Googly.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Rocker.cpp" />
     <ClCompile Include="Stabilizer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="Googly.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Rocker.h" />
