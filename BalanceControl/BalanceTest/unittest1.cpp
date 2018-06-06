@@ -14,41 +14,50 @@ namespace BalanceTest
 		
 		TEST_METHOD(velocity_by_uncahnged_angle)
 		{	
-			Physics phy_calculator(0.0f);
-		
-			//const long long time_now_us = std::chrono::duration_cast<std::chrono::microseconds>(clk_rep_cnt).count();
-			Assert::AreEqual(0.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 0)));
+			Physics phy_calculator;
+			const auto time_delta_us = 10000;
+
+			Assert::AreEqual(0.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 0, time_delta_us)));
+			Assert::AreEqual(10.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 10.0f, time_delta_us)));
 		}
 
-		TEST_METHOD(velocity_by_cahnged_angle)
+		TEST_METHOD(velocity_by_pos_changed_angle)
+		{			
+			Physics phy_calculator;
+
+			auto time_delta_us = 100000;	//simulate time delta of 100ms
+			Assert::IsTrue(0.17 < phy_calculator.calc_velocity(10.0f, 0, time_delta_us));
+
+			const auto vel = phy_calculator.calc_velocity(10.0f, 0, time_delta_us);
+			time_delta_us += 100000;
+			Assert::IsTrue(0.34 < phy_calculator.calc_velocity(10.0f, vel, time_delta_us));
+		}
+
+		TEST_METHOD(velocity_by_neg_changed_angle)
 		{
-			bool exception_appear = false;
-			try
-			{
-				sys_now_duration const clk_rep_cnt = std::chrono::system_clock::now().time_since_epoch();
-				Physics phy_calculator(0.0f);
+			Physics phy_calculator;
 
-				auto time_now_us = std::chrono::duration_cast<std::chrono::microseconds>(clk_rep_cnt).count();
-				//Assert::AreEqual(0.0, static_cast<double>(time_now_us));
-				time_now_us += 100000;	//simulate time delta of 100ms
-				for (auto i = 0; i < 65535; ++i);
-				for (auto i = 0; i < 65535; ++i);
-				//Assert::AreEqual(0.170349, static_cast<double>(phy_calculator.calc_velocity(10.0f, 0, time_now_us)));
-				Assert::IsTrue(0.17 < phy_calculator.calc_velocity(10.0f, 0));
+			auto time_delta_us = 100000;	//simulate time delta of 100ms
+			Assert::IsTrue(0.17 > phy_calculator.calc_velocity(-10.0f, 0, time_delta_us));
 
-				const auto vel = phy_calculator.calc_velocity(10.0f, 0);
-				time_now_us += 200000;
-				for (auto i = 0; i < 65535; ++i);
-				Assert::IsTrue(0.34 < phy_calculator.calc_velocity(10.0f, vel));
-				
-			}
-			catch(const std::exception &e)
-			{
-				exception_appear = true;
-			}
-			Assert::IsFalse(exception_appear);
+			const auto vel = phy_calculator.calc_velocity(-10.0f, 0, time_delta_us);
+			time_delta_us += 100000;
+			Assert::IsTrue(0.34 > phy_calculator.calc_velocity(-10.0f, vel, time_delta_us));
 		}
 
+		TEST_METHOD(velocity_limit_angle)
+		{
+			Physics phy_calculator;
+
+			auto time_delta_us = 100000;	//simulate time delta of 100ms
+			Assert::IsTrue((0.376 > phy_calculator.calc_velocity(50.0f, 0, time_delta_us)) &&
+							(0.374 < phy_calculator.calc_velocity(50.0f, 0, time_delta_us)));
+
+			const auto vel = phy_calculator.calc_velocity(26.7f, 0, time_delta_us);
+			time_delta_us += 100000;
+			Assert::IsTrue(-0.133 < phy_calculator.calc_velocity(-15.0f, vel, time_delta_us) &&
+						   -0.132 > phy_calculator.calc_velocity(-15.0f, vel, time_delta_us));
+		}
 	};
 
 	TEST_CLASS(Class_stabilizer_test)
