@@ -1,9 +1,5 @@
 #pragma once
-#include <chrono>
 #include "Math_const.h"
-#include "GameController.h"
-
-//extern const float pi;
 
 class Stabilizer
 {
