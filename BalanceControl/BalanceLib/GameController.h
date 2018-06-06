@@ -17,6 +17,6 @@ private:
 	Googly ball_;
 	Physics physics_;
 	Rocker seesaw_;
-	Stabilizer controller;
+	Stabilizer controller_;
 }; 
 
