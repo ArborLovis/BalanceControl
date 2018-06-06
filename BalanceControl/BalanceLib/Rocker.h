@@ -1,13 +1,9 @@
 #pragma once
-const float PI = 3.141592;
-
-
+#include "Math_const.h"
 #include <chrono>
 
 class Rocker
 {
-	using time_type = std::chrono::time_point<std::chrono::system_clock>;
-
 public:
 
 	Rocker(float lenght = 2, float act_angle = 0);
@@ -17,15 +13,12 @@ public:
 	
 private:
 
-
-	const float PI = 3.141592;
-
 	float length_;
 	float target_angle_;
 	float act_angle_;
-	float min_angle_ = -(PI / 8);
-	float max_angle_ = (PI / 8);
-	const float max_ang_speed_micro_ = (PI / 4) / 1000000;  //per microsecond
+	float min_angle_ = -(pi / 8);
+	float max_angle_ = (pi / 8);
+	const float max_ang_speed_micro_ = (pi / 4) / 1000000;  //per microsecond
 	
 	void angle_change(const float delta_time_micro);
 };

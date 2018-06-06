@@ -1,6 +1,5 @@
 #include "Rocker.h"
 
-
 Rocker::Rocker(float length, float act_angle)
 {
 	length_ = length;
