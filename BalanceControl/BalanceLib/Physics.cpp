@@ -4,8 +4,8 @@
 #include <exception>
 
 Physics::Physics()
-	: g_{ static_cast<float>(9.81) }, act_vel_{ 0 }, act_acc_{ 0 }, low_limit_angle_{ -22.5 },
-	  high_limit_angle_{ 22.5 }
+	: g_{ static_cast<float>(9.81) }, act_vel_{ 0 }, act_acc_{ 0 }, low_limit_angle_{ -90 },
+	  high_limit_angle_{ 90 }
 {
 }
 
@@ -26,6 +26,6 @@ float Physics::calc_velocity(float angle, float act_veloc, const long long time_
 
 float Physics::calc_position(const float act_pos, const float act_veloc, const long long time_delta_us)
 {
-	return (act_veloc * time_delta_us + act_pos);
+	return (act_veloc * time_delta_us * 1e-6 + act_pos);
 }
 
