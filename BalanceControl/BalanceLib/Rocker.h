@@ -6,7 +6,7 @@ class Rocker
 {
 public:
 
-	Rocker(float lenght = 2, float act_angle = 0);
+	Rocker(float lenght = 2, float act_angle = pi/16);
 
 	float get_angle(const float delta_time_mico);
 	void set_angle(float act_angle);

@@ -1,7 +1,15 @@
+/**
+ * Physics.cpp
+ * Purpose: Calculation of velocity and distance in dependence
+ *			on an angle.
+ *			
+ *	@author Patrick Schuster
+ *	@version 1.0 09/06/18
+ */
+
 #include "../BalanceLib/Physics.h"
 #include <chrono>
-#include <math.h>
-#include <exception>
+#include <cmath>
 
 Physics::Physics()
 	: g_{ static_cast<float>(9.81) }, act_vel_{ 0 }, act_acc_{ 0 }, low_limit_angle_{ -90 },
@@ -11,7 +19,6 @@ Physics::Physics()
 
 float Physics::calc_velocity(float angle, float act_veloc, const long long time_delta_us)
 {
-
 	if (angle < low_limit_angle_)
 		angle = low_limit_angle_;
 	else if (angle > high_limit_angle_)
