@@ -9,7 +9,6 @@
 
 #pragma once
 #include <chrono>
-#include <chrono>
 
 /*Not relevant anymore
 using sys_now_duration = std::chrono::duration<long long, std::ratio<1, 1000000000>>;
