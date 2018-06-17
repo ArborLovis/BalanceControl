@@ -18,9 +18,13 @@ public:
 	*			The angle will be between -pi/8 and +pi/8.
 	*/
 	float update_values(float input_angle);
+
 	Googly get_copied_ball() const;
+	void set_ball_velocity(const float vel);
+
 	Rocker get_copied_seesaw() const;
 	Physics get_copied_phy_obj() const;
+
 	Stabilizer get_copied_controller() const;
 	void set_param_pid_ctr(const float kp, const float ki, const float kd);
 

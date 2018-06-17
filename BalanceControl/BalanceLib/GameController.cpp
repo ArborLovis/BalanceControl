@@ -1,5 +1,4 @@
 #include "GameController.h"
-#include "Rocker.h"
 #include <iostream>
 
 
@@ -33,34 +32,14 @@ float GameController::update_values(float input_angle)
 
 }
 
-//float GameController::get_ball_position() const
-//{
-//	return ball_.get_position();
-//}
-//
-//float GameController::get_seesaw_angle(const long long time_delta_us)
-//{
-//	return seesaw_.get_angle(static_cast<float>(time_delta_us));
-//}
-//
-//void GameController::set_ctr_kp(float kp)
-//{
-//	controller_.set_kp(kp);
-//}
-//
-//void GameController::set_ctr_kd(float kd)
-//{
-//	controller_.set_kd(kd);
-//}
-//
-//void GameController::set_ctr_ki(float ki)
-//{
-//	controller_.set_ki(ki);
-//}
-
 Googly GameController::get_copied_ball() const
 {
 	return ball_;
+}
+
+void GameController::set_ball_velocity(const float vel)
+{
+	ball_.set_velocity(vel);
 }
 
 Rocker GameController::get_copied_seesaw() const
