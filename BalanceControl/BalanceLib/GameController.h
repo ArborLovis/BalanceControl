@@ -18,12 +18,11 @@ public:
 	*			The angle will be between -pi/8 and +pi/8.
 	*/
 	float update_values(float input_angle);
-	
-	float get_ball_position() const;
-	float get_seesaw_angle(const long long time_delta_us);
-	void set_ctr_kp(float kp);
-	void set_ctr_kd(float kd);
-	void set_ctr_ki(float ki);
+	Googly get_copied_ball() const;
+	Rocker get_copied_seesaw() const;
+	Physics get_copied_phy_obj() const;
+	Stabilizer get_copied_controller() const;
+	void set_param_pid_ctr(const float kp, const float ki, const float kd);
 
 private:
 	Googly ball_;

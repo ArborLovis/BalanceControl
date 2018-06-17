@@ -29,6 +29,17 @@ void Rocker::set_angle(float target_angle)
 		target_angle_ = target_angle;
 }
 
+Rocker & Rocker::operator=(const Rocker & other)
+{
+	length_ = other.length_;
+	target_angle_ = other.target_angle_;
+	act_angle_ = other.act_angle_;
+	min_angle_ = other.min_angle_;
+	max_angle_ = other.max_angle_;
+
+	return *this;
+}
+
 void Rocker::angle_change(const float delta_time_micro)
 {
 	float angle_change = (max_ang_speed_micro_ * delta_time_micro);
