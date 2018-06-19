@@ -21,8 +21,11 @@ public:
 
 	Googly get_copied_ball() const;
 	void set_ball_velocity(const float vel);
+	void set_ball_position(const float pos);	//needed for reseting postion in GameOptimizer
+
 
 	Rocker get_copied_seesaw() const;
+	void set_rocker_angle(const float angle);
 	Physics get_copied_phy_obj() const;
 
 	Stabilizer get_copied_controller() const;

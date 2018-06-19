@@ -42,9 +42,19 @@ void GameController::set_ball_velocity(const float vel)
 	ball_.set_velocity(vel);
 }
 
+void GameController::set_ball_position(const float pos)
+{
+	ball_.set_position(pos);
+}
+
 Rocker GameController::get_copied_seesaw() const
 {
 	return seesaw_;
+}
+
+void GameController::set_rocker_angle(const float angle)
+{
+	seesaw_.set_angle(angle);
 }
 
 Physics GameController::get_copied_phy_obj() const
