@@ -25,7 +25,7 @@ public:
 
 
 	Rocker get_copied_seesaw() const;
-	void set_rocker_angle(const float angle);
+	void set_rocker_angle_to_zero();
 	Physics get_copied_phy_obj() const;
 
 	Stabilizer get_copied_controller() const;

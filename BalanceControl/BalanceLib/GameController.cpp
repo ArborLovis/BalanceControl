@@ -6,7 +6,7 @@ GameController::GameController() = default;
 
 float GameController::update_values(float input_angle)	
 {
-	const long long time_delta_us = 5000;
+	const long long time_delta_us = 2000;	//this cycletime is defined in class Stabilizer, a change here has no impact to the controller
 
 	const float act_vel = ball_.get_velocity();
 	float act_pos = ball_.get_position();
@@ -29,7 +29,6 @@ float GameController::update_values(float input_angle)
 	input_angle = controller_.calc_setpoint(act_pos);
 
 	return input_angle;
-
 }
 
 Googly GameController::get_copied_ball() const
@@ -52,9 +51,9 @@ Rocker GameController::get_copied_seesaw() const
 	return seesaw_;
 }
 
-void GameController::set_rocker_angle(const float angle)
+void GameController::set_rocker_angle_to_zero()
 {
-	seesaw_.set_angle(angle);
+	seesaw_.set_angle(0);
 }
 
 Physics GameController::get_copied_phy_obj() const
