@@ -28,4 +28,9 @@ float Googly::get_position() const
 	return position_;
 }
 
+float Googly::get_radius() const
+{
+	return radius_;
+}
+
 

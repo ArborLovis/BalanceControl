@@ -9,6 +9,7 @@ public:
 	float get_velocity() const;
 	void set_position(float position);
 	float get_position() const;
+	float get_radius() const;
 
 private:
 	//float colour_;  //for later use
