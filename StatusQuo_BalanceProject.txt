@@ -1,3 +1,13 @@
+Mitglieder:
+Patrick Schuster
+Michael Teuschler
+Ralph Berghofer
+Simon Waldhuber
+
+Repository: 	https://github.com/ArborLovis/BalanceControl/commits/developer
+Commit:		929e37e21fdb0ea72a8146c12337d86114f3bfb0
+
+
 Das Projekt wurde in vier verscchiedene Komponenten aufgeteilt: Ball, Wippe, Physik und Regler.
 Diese vier "Grundbausteine" wurde in der Klasse GameController vereint. 
 Unit Test wurden für die Klassen Ball, Physik, Wippe und Regler durchgeführt.
