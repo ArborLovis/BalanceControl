@@ -1,6 +1,6 @@
 Das Projekt wurde in vier verscchiedene Komponenten aufgeteilt: Ball, Wippe, Physik und Regler.
 Diese vier "Grundbausteine" wurde in der Klasse GameController vereint. 
-Unit Test wurden für die Klassen Ball, Physik und Regler durchgeführt.
+Unit Test wurden für die Klassen Ball, Physik, Wippe und Regler durchgeführt.
 
 User Interface:
 Ball und Wippe werden auf der Leinwand gezeichnet und sind auch bewegbar.
@@ -8,7 +8,7 @@ Mit dem Left-Key kann der Ball nach links und mit dem Right-Key nach rechts um 0
 werden.
 Beim Übertreten des Balles von der Wippe fällt dieser nicht herunter, sondern würde gemütlich
 weiterlaufen.
-Über die Taste X kann das Fenster geschlossen werden.
+Über die Taste X oder Escape kann das Fenster geschlossen werden.
 
 Optimization:
 Die Optimierung dauert einige Zeit, da wir einfach einen "brute force" Algorithmus implementiert
