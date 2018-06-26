@@ -146,8 +146,45 @@ namespace BalanceTest
 		}
 	};
 
-	TEST_CLASS(test_class_googly)
+	TEST_CLASS(Class_googly_test)
 	{
+		TEST_METHOD(test_googly_constructor)
+		{
+			const float test_radius = 1.0;
+			const float test_position = 0;
+			const float test_velocity = 0;
 
+			Googly Ball{ test_radius, test_position, test_velocity };
+
+			Assert::AreEqual(test_radius, Ball.get_radius());
+			Assert::AreEqual(test_position, Ball.get_position());
+			Assert::AreEqual(test_velocity, Ball.get_velocity());
+		}
+
+		TEST_METHOD(test_googly_set_velocity)
+		{
+			const float test_radius = 1.0;
+			const float test_position = 0;
+			const float test_velocity = 0;
+			const float new_test_velocity = 5;
+
+			Googly Ball{ test_radius, test_position, test_velocity };
+
+			Ball.set_velocity(new_test_velocity);
+			Assert::AreEqual(new_test_velocity, Ball.get_velocity());
+		}
+
+		TEST_METHOD(test_googly_set_position)
+		{
+			const float test_radius = 1.0;
+			const float test_position = 0;
+			const float test_velocity = 0;
+			const float new_test_position = 5;
+
+			Googly Ball{ test_radius, test_position, test_velocity };
+
+			Ball.set_position(new_test_position);
+			Assert::AreEqual(new_test_position, Ball.get_position());
+		}
 	};
 }
