@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include <iostream>
+
 #include "../BalanceLib/Physics.h"
 #include "../BalanceLib/Stabilizer.h"
 #include "../BalanceLib/Googly.h"
-#include <iostream>
+#include "../BalanceLib/Rocker.h"
+#include "../BalanceLib/Math_const.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -186,6 +189,101 @@ namespace BalanceTest
 
 			Ball.set_position(new_test_position);
 			Assert::AreEqual(new_test_position, Ball.get_position());
+		}
+	};
+
+	TEST_CLASS(Class_rocker_test)
+	{
+		TEST_METHOD(test_rocker_std_cotr)
+		{
+			Rocker test_rocker;
+			const float time_delta = 100000.0f;	//100ms
+			float act_angle = 0.0f;
+
+			//check default value of angle
+			Assert::AreEqual(0.0, static_cast<double>(test_rocker.get_angle(0)));
+
+			//change of angle
+			test_rocker.set_angle(pi / 8);	//change angle within the limits
+			
+			//pi/4 * e-6 -> max angle speed per µs
+			// after 100ms --> 78.54e-3 rad/s
+			// --> pi/8 will be reached after min. 0.5s
+			for(auto i = 0; i < 6; i++)
+				act_angle = test_rocker.get_angle(time_delta);	//check angle after 0.6s
+
+			Assert::IsTrue((pi / 8 - 0.01f) < act_angle && act_angle < (pi / 8 + 0.01f));
+		}
+
+		TEST_METHOD(test_rocker_spez_cotr)
+		{
+			Rocker test_rocker(2.0f, pi / 10);
+			const float time_delta = 10000.0f;	//10ms	(take a higher resolution)
+			float act_angle = 0.0f;
+
+			//check default value of angle
+			act_angle = test_rocker.get_angle(time_delta);	//angle has to be const, so time does not matter
+			Assert::IsTrue((pi / 10 - 0.01f) < act_angle && act_angle < (pi / 10 + 0.01f));
+
+			//change of angle
+			test_rocker.set_angle(- pi / 10);	//change angle within the limits
+
+			//pi/4 * e-6 -> max angle speed per µs
+			// after 10ms --> 7.854e-3 rad/s
+			// --> -pi/10 will be reached after min. 0.8s
+			for (auto i = 0; i < 90; i++)
+				act_angle = test_rocker.get_angle(time_delta);	//check angle after 0.9s
+
+			Assert::IsTrue((- pi / 10 - 0.01f) < act_angle && act_angle < (- pi / 10 + 0.01f));
+		}
+
+		TEST_METHOD(test_rocker_limits)
+		{
+			Rocker test_rocker;
+			const float time_delta = 100000.0f;	//100ms
+			float act_angle = 0.0f;
+		
+			//change of angle --> positive
+			test_rocker.set_angle(pi / 3);	//exeed limits -> 60°
+
+			//pi/4 * e-6 -> max angle speed per µs
+			// after 100ms --> 78.54e-3 rad/s
+			// --> pi/8 will be reached after min. 0.5s and so pi/3 would be reached 1.333s
+			for (auto i = 0; i < 15; i++)
+				act_angle = test_rocker.get_angle(time_delta);	//check angle after 1.5s
+
+			//angle has to stuck at angle pi/8
+			Assert::IsTrue((pi / 8 - 0.01f) < act_angle && act_angle < (pi / 8 + 0.01f));
+
+			//change of angle --> negative
+			test_rocker.set_angle(- pi / 3);	//exeed limits -> -60°
+
+			// --> -pi/8 will be reached after min. 0.5s and so -pi/3 would be reached 1.333s
+			for (auto i = 0; i < 30; i++)
+				act_angle = test_rocker.get_angle(time_delta);	//check angle after 3s, twice 1.5s because angle stuck in pos. max. pos.
+
+			//angle has to stuck at angle -pi/8
+			Assert::IsTrue((- pi / 8 - 0.01f) < act_angle && act_angle < (- pi / 8 + 0.01f));
+		}
+
+		TEST_METHOD(test_rocker_cpy_assign_opr)
+		{
+			Rocker test_rocker;
+			Rocker assigned_rocker;
+			const float time_delta = 10000.0f;	//10ms
+			float act_angle = 0.0f;
+
+			test_rocker.set_angle(pi / 16);	//to reach an angle of pi/16 -> time slots has to be smaller, otherwise angle overshoot permanently 
+			for (auto i = 0; i < 30; i++)
+				act_angle = test_rocker.get_angle(time_delta);	//check angle after 0.3s
+
+			Assert::IsTrue((pi / 16 - 0.01f) < act_angle && act_angle < (pi / 16 + 0.01f));
+			Assert::AreEqual(0.0, static_cast<double>(assigned_rocker.get_angle(time_delta)));	//check if zero, even after some time
+			
+			//copy rocker obj and check if equal
+			assigned_rocker = test_rocker;
+			act_angle = assigned_rocker.get_angle(0.0f);
+			Assert::IsTrue(pi / 16 - 0.01f < act_angle && act_angle < pi / 16 + 0.01f);
 		}
 	};
 }
