@@ -1,0 +1,33 @@
+Mitglieder:
+Patrick Schuster
+Michael Teuschler
+Ralph Berghofer
+Simon Waldhuber
+
+Repository: 	https://github.com/ArborLovis/BalanceControl/commits/developer
+Commit:		929e37e21fdb0ea72a8146c12337d86114f3bfb0
+
+
+Das Projekt wurde in vier verscchiedene Komponenten aufgeteilt: Ball, Wippe, Physik und Regler.
+Diese vier "Grundbausteine" wurde in der Klasse GameController vereint. 
+Unit Test wurden für die Klassen Ball, Physik, Wippe und Regler durchgeführt.
+
+User Interface:
+Ball und Wippe werden auf der Leinwand gezeichnet und sind auch bewegbar.
+Mit dem Left-Key kann der Ball nach links und mit dem Right-Key nach rechts um 0.5 m/s beschlunigt
+werden.
+Beim Übertreten des Balles von der Wippe fällt dieser nicht herunter, sondern würde gemütlich
+weiterlaufen.
+Über die Taste X oder Escape kann das Fenster geschlossen werden.
+
+Optimization:
+Die Optimierung dauert einige Zeit, da wir einfach einen "brute force" Algorithmus implementiert
+haben. Startpunkt ist 0.1 für alle Parameter ki, kp und kd und werden dann bis Wert 5 erhöht 
+und alle miteinander kombiniert, um so ein Minimum zu finden. Wie in der Anforderung beschrieben
+wird der Ball zuerst nach rechts beschleunigt (aus dem Zentrum) und nach 5s wird der Ball nach
+links beschleunig. Nach weiteren 5s soll der Ball wieder in der Mitte liegen bleiben.
+Dieser Optimierungsablauf ergab 3 Werte und diese sind auch im BalacneUI.cpp File im Regler
+als Einstellungen zu finden.
+
+Raspberry Pi Projekt
+Hierfür wurde keine Implementierung vorgenommen.
