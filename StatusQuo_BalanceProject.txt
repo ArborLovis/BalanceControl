@@ -1,9 +1,10 @@
 Das Projekt wurde in vier verscchiedene Komponenten aufgeteilt: Ball, Wippe, Physik und Regler.
 Diese vier "Grundbausteine" wurde in der Klasse GameController vereint. 
+Unit Test wurden für die Klassen Ball, Physik und Regler durchgeführt.
 
 User Interface:
 Ball und Wippe werden auf der Leinwand gezeichnet und sind auch bewegbar.
-Mit der Taste Q kann der Ball nach links und mit der Taste W nach rechts um 0.5 m/s beschlunigt
+Mit dem Left-Key kann der Ball nach links und mit dem Right-Key nach rechts um 0.5 m/s beschlunigt
 werden.
 Beim Übertreten des Balles von der Wippe fällt dieser nicht herunter, sondern würde gemütlich
 weiterlaufen.

@@ -24,7 +24,7 @@ float Physics::calc_velocity(float angle, float act_veloc, const long long time_
 	else if (angle > high_limit_angle_)
 		angle = high_limit_angle_;
 
-	const float PI_ = 3.141592;
+	static const float PI_ = 3.141592;
 	act_acc_ = g_ * sin(angle*PI_/180.0);
 	act_vel_ = act_acc_ * time_delta_us * 1e-6 + act_veloc;	// m/s
 	

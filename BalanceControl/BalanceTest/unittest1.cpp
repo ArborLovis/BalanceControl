@@ -5,8 +5,6 @@
 #include "../BalanceLib/Googly.h"
 #include <iostream>
 
-
-
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace BalanceTest
@@ -20,23 +18,25 @@ namespace BalanceTest
 			Physics phy_calculator;
 			const auto time_delta_us = 10000;
 
+			//flat surface, no movement here
 			Assert::AreEqual(0.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 0, time_delta_us)));
-			Assert::AreEqual(10.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 10.0f, time_delta_us)));
+			Assert::AreEqual(10.0, static_cast<double>(phy_calculator.calc_velocity(0.0f, 10.0f, time_delta_us)));	//flat surface, init velocity and no friction
 		}
 
 		TEST_METHOD(velocity_by_pos_changed_angle)
 		{			
 			Physics phy_calculator;
 
+			//expected output: g * sin(10°) * 0.1s = 0.17035
 			auto time_delta_us = 100000;	//simulate time delta of 100ms
 			Assert::IsTrue(0.17 < phy_calculator.calc_velocity(10.0f, 0, time_delta_us));
 
-			const auto vel = phy_calculator.calc_velocity(10.0f, 0, time_delta_us);
-			time_delta_us += 100000;
-			Assert::IsTrue(0.34 < phy_calculator.calc_velocity(10.0f, vel, time_delta_us));
+			const auto vel = phy_calculator.calc_velocity(10.0f, 0, time_delta_us);	//again 0.17 m/s
+			time_delta_us += 100000;	//another 100ms passed
+			Assert::IsTrue(0.34 < phy_calculator.calc_velocity(10.0f, vel, time_delta_us)); // expected output: twice of 0.17 m/s
 		}
 
-		TEST_METHOD(velocity_by_neg_changed_angle)
+		TEST_METHOD(velocity_by_neg_changed_angle)	//same values expected as above, just with another sign
 		{
 			Physics phy_calculator;
 
@@ -55,8 +55,9 @@ namespace BalanceTest
 			const auto time_delta_us = 100000;	//simulate time delta of 100ms
 			auto act_vel = phy_calculator.calc_velocity(95.0f, 0, time_delta_us);
 			
-			Assert::IsTrue((0.982 > act_vel) && (0.980 < act_vel));
+			Assert::IsTrue((0.982 > act_vel) && (0.980 < act_vel));	//limits within 90°
 
+			//change in position and limits
 			act_vel = phy_calculator.calc_velocity(110.8f, 0, time_delta_us);
 			act_vel = phy_calculator.calc_velocity(-15.0f, act_vel, time_delta_us);
 
